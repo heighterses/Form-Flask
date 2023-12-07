@@ -10,14 +10,20 @@ def hello_world():  # put application's code here
 
 @app.route("/login", methods=["POST"])
 def data_receive():
-        name = request.form["username"]
-        password = request.form["password"]
-        return f"<h1>name: {name}</h1>"
+    name = request.form["username"]
+    password = request.form["password"]
+    return f"<h1>name: {name}</h1>"
+
 
 @app.route('/contact', methods=["POST"])
 def contact_form():
-    pass
+    if request.method == 'POST':
+        data = request.form
+        print(data["name"])
+        print(data["email"])
+        print(data["message"])
 
+        return render_template('Form-Entered.html')
 
 
 if __name__ == '__main__':
