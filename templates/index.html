@@ -5,7 +5,7 @@
     <title>Contact Form</title>
 </head>
 <body>
-<form action="/login" method="post">
+<form action={{ url_for('data_receive') }} method="post">
     <label>Name:</label>
     <input type="text" placeholder="Name" name="username">
     <label>Password:</label>
