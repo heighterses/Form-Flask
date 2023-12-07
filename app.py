@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return render_template('contact.html')
+    return render_template('index.html')
 
 
 @app.route("/login", methods=["POST"])
@@ -14,6 +14,9 @@ def data_receive():
     password = request.form["password"]
     return f"<h1>name: {name}</h1>"
 
+@app.route('/contact')
+def contact_page():
+    return render_template('contact.html')
 
 @app.route('/contact', methods=["POST"])
 def contact_form():
@@ -24,6 +27,9 @@ def contact_form():
         print(data["message"])
 
         return render_template('Form-Entered.html')
+
+
+
 
 
 if __name__ == '__main__':
