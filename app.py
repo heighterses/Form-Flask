@@ -1,4 +1,13 @@
 from flask import Flask, render_template, request
+import smtplib
+
+# <--------Email Credentials-------------
+my_email = ""
+password = ""
+
+
+# <-------------App Code------------------
+
 
 app = Flask(__name__)
 
@@ -14,21 +23,31 @@ def data_receive():
     password = request.form["password"]
     return f"<h1>name: {name}</h1>"
 
+
 @app.route('/contact')
 def contact_page():
     return render_template('contact.html')
+
 
 @app.route('/contact', methods=["POST"])
 def contact_form():
     if request.method == 'POST':
         data = request.form
-        print(data["name"])
-        print(data["email"])
-        print(data["message"])
+        name = (data["name"])
+        email = (data["email"])
+        message = (data["message"])
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(user=my_email, password=password)
+            connection.sendmail(from_addr=email,
+                                to_addrs="binaftaba@gmail.com",
+                                msg=f"Subject: 'Portfolio Message'\n\n Hello My NAME IS: {name}\nQuery: {message} ")
 
         return render_template('Form-Entered.html')
 
 
+def sending_mail():
+    pass
 
 
 
