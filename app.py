@@ -5,7 +5,6 @@ import smtplib
 my_email = ""
 password = ""
 
-
 # <-------------App Code------------------
 
 
@@ -48,7 +47,6 @@ def contact_form():
 
 def sending_mail():
     pass
-
 
 
 if __name__ == '__main__':
